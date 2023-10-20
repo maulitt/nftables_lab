@@ -1,0 +1,39 @@
+table task_9 {
+
+   set A_set {
+        type ipv4_addr;
+        elements = { 192.168.62.100, 192.168.62.101 }
+   }
+
+   set B_set {
+        type ipv4_addr;
+        elements = { 192.168.62.102 }
+   }
+
+   set C_set {
+        type ipv4_addr;
+        elements = { 192.168.62.103, 192.168.62.104 }
+   }
+
+   chain main {
+        type filter hook input priority 0;
+        ip saddr @A_set jump A;
+        ip saddr @B_set jump B;
+        ip saddr @C_set jump C;
+   }
+
+   chain A {
+        policy drop;
+        ip saddr @A_set accept;
+   }
+
+   chain B {
+        policy drop;
+        ip saddr @B_set accept;
+   }
+
+   chain C {
+        policy accept;
+        ip saddr @C_set drop;
+   }    
+}

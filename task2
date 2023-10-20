@@ -1,0 +1,6 @@
+table task_2 {
+   chain outcoming {
+	type filter hook output priority 0;
+	oifname "eth1" drop;
+   }
+}

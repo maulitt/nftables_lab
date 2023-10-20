@@ -1,0 +1,17 @@
+table task_8 {
+   
+   set ip_list {
+	type ipv4_addr
+	elements = {192.168.62.100, 192.168.62.101, 192.168.62.102}
+   }
+
+   set port_list {
+	type inet_service
+	elements = { 80, 8080, 443, 8443 }
+   }
+
+  chain blocking {
+	type filter hook input priority 0;
+	ip saddr @ip_list tcp dport @port_list drop
+  }
+}

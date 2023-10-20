@@ -1,0 +1,7 @@
+table task_5 {
+   chain incoming {
+	type filter hook input priority 0;
+	ip saddr 192.168.62.128 tcp dport 443 accept;
+	tcp dport 443 drop;
+   }
+}

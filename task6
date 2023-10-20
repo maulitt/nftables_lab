@@ -1,0 +1,6 @@
+table task_6 {
+   chain for_prerouting {
+	type nat hook prerouting priority 0;
+	tcp dport 80 redirect to :8080;
+   }
+}
